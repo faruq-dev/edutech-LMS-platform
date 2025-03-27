@@ -31,7 +31,7 @@ export default async function RootLayout({
       <body
         className={`${rubik.variable} ${manrope.variable} antialiased`}
       >
-        {children}
+        <div>{children}</div>
       </body>
     </html>
   );

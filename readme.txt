@@ -71,4 +71,29 @@ console.log(courses);
 এক্ষেত্রে অবশ্যই page.tsx কে async বানিয়ে নিতে হবে, কারন getCourse() একটা async ফাংশন।
 
 
- 
+4: populate এর কাজ ******** (very important ***) - 
+আমরা যখন প্রতিটা কন্ট্রোলারের ভেতর async ফাংশনটা লিখি তখন সেই ফাংশনের ভেতর শুধু মডেলটাকে await Course.find(); এভাবে লিখলে সেই মডেলের ডাটাবেজের ভেতর যেসব রিলেশনাল ডাটা আছে সেগুলার শুধু Object ID শো করবে, যেমন আমরা যদি await Course.find(); এভাবে লিখি তাহলে Course মডেলের যেসকল ফিল্ডের সাথে অন্য মডেল গুলোর রিলেশন আছে সেসকল ফিল্ডের ক্ষেত্রে শুধু objectID প্রিন্ট হবে কনসোলে, ফিল্ডের ভেতরে থাকা একচুয়াল ডাটা গুলো প্রিন্ট হবেনা। একচুয়াল ডাটা গুলো সহ প্রিন্ট করতে হলে populate করতে হয়, যেসকল ফিল্ডের সাথে অন্য মডেলের রিলেশন আছে সেসকল ফিলডকে পপুলেট করতে হবে, যেমন model ফোল্ডারে course-model.ts ফাইউলে গেলে আমরা দেখতে পাব module, testimonial, category, instructor এই ফিল্ড গুলোর সাথে অন্য মডেল গুলোর রিলেশন রয়েছে।
+
+পপুলেট এর উদাহরনঃ export async function getCourse(): Promise<ICourse[]>{
+    const courses = await Course.find()
+    .populate({
+        path: 'category',
+        model: Category
+    })
+    .populate({
+        path: 'modules',
+        model: Module
+    })
+    .populate({
+        path: 'testimonials',
+        model: Testimonial
+    })
+    .populate({
+        path: 'instructor',
+        model: User
+    })
+    
+    return courses;
+};
+
+https://drive.google.com/file/d/15ZiGcaNhnHMc4PCWcida_gr_D8HETDMD/view এই ভিডিওর ১৫মিনিট ৪৬ সেকেন্ড থেকে পপুলেট এর আলোচনা করা হয়েছে। *******************
