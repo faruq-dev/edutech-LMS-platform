@@ -18,7 +18,7 @@ const courseSchema = new Schema<ICourse>({
     type: String,
     required: true,
   },
-  module: [
+  modules: [
     {
       required: true,
       type: Schema.ObjectId,
@@ -32,7 +32,7 @@ const courseSchema = new Schema<ICourse>({
       ref: "Testimonial",
     },
   ],
-  instrustor: {
+  instructor: {
     required: true,
     type: Schema.ObjectId,
     ref: "User",

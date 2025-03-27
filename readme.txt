@@ -46,3 +46,29 @@ export async function dbConnect() {
 
 **************************************************************************************************
 
+এর পরের কাজ হচ্ছে controller গুলো তৈরী করাঃ
+1: এরজন্য প্রথমেই src ফোল্ডারে controller নামে একটা ফোল্ডার নিতে হবে, এরপর সে ফোল্ডারে আমাদের সকল controller গুলো থাকবে যেমন course-controller.ts বা category-controller.ts
+
+2: যে ডাটাবেজ মডেলের জন্য কন্ট্রোলার বানাচ্ছি সেই মডেলকে তার controller ফাইলে ইমপোর্ট করে আনতে হবে, যেমনঃ import { Course } from "@/model/course-model"; (এখানে model ফোল্ডার থেকে Course মডেলকে ইম্পোর্ট করে আনলাম)
+
+3: প্রতিটা কন্ট্রোলারের ভিতরে একটা async ফাংশন লিখতে হবে, এক্ষেত্রে যেই মডেলের জন্য কন্ট্রোলার বানাচ্ছি সেই মডেলের নামের সাথে মিল রেখে ফাংশনের নাম দিতে হবে, যেমন Course মডেলের জন্য কন্ট্রলার  বানালে নাম দিব getCourse();
+
+4: পুরো কোডের উদাহরনঃ
+import { Course } from "@/model/course-model";
+
+export async function getCourse(){
+    const courses = await Course.find();
+    // console.log(courses);
+    return courses;
+};
+
+এখানে async ফাংশনটার ভেতর আগে থেকে ইমপোর্ট করে রাখা Course মডেলকে একটা ভ্যারিয়েবলের ভেতর রাখলাম (courses নামক ভ্যারিয়েবল), আর Course কে await করে তার উপর CRUD অপারেশন চালানোর জন্য Course.find(); দিলাম, এই find() মেথড Course মডেলে থাকা ডাটাগুলোকে বের করে আনতে পারবে। এরপর courses কে রিটার্ন করলাম
+
+5: এরপর যেকোনো page.tsx এর ভেতর এই async ফাংশনকে ইমপোর্ট করে একটা ভ্যারিয়েবলের ভেতর রেখে কনসোল করলেই ডাটা গুলো দেখা যাবে, যেমন-
+const courses = await getCourse();
+console.log(courses);
+
+এক্ষেত্রে অবশ্যই page.tsx কে async বানিয়ে নিতে হবে, কারন getCourse() একটা async ফাংশন।
+
+
+ 
