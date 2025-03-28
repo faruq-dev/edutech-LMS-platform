@@ -5,10 +5,13 @@ import { ArrowRightIcon } from "lucide-react";
 import SectionTitle from "@/components/SectionTitle";
 import { getCourse } from "@/controller/course-controller";
 import CourseCard from "./courses/_components/CourseCard";
+import { getCategory } from "@/controller/category-controller";
+import CategoryCard from "./categories/_components/CategoryCard";
 
 const Homepage = async () => {
   const courses = await  getCourse(); // Data fetched from mongoDB
-  // console.log(courses);
+  const categories = await getCategory(); // Data fetched from mongoDB
+  console.log(categories);
   return (
     <div className="container mx-auto font-rubik">
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 grainy">
@@ -74,26 +77,12 @@ const Homepage = async () => {
             Browse All <ArrowRightIcon className="h-4 w-4" />
           </Link>
         </div>
-        <div className="mx-auto grid justify-center gap-4 grid-cols-2  md:grid-cols-3 2xl:grid-cols-4">
-          {/* {categories.map((category) => {
-            return (
-              <Link
-                href={`/categories/${category._id}`}
-                key={category._id}
-                className="relative overflow-hidden rounded-lg border bg-background p-2 hover:scale-105 transition-all duration-500 ease-in-out"
-              >
-                <div className="flex  flex-col gap-4 items-center justify-between rounded-md p-6">
-                  <Image
-                    src={`/assets/images/categories/${category?.thumbnail}`}
-                    alt={category?.title}
-                    width={150}
-                    height={150}
-                  />
-                  <h3 className="font-bold">{category.title}</h3>
-                </div>
-              </Link>
-            );
-          })} */}
+        <div className="mx-auto grid justify-center gap-4 grid-cols-1 md:grid-cols-2 2xl:grid-cols-2">
+          {
+            categories.map((category)=>{
+              return <CategoryCard key={category._id} category={category}/>
+            })
+          }
         </div>
       </section>
 

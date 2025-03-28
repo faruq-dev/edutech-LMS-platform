@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { ICourse } from "@/interface/course-interface";
-import { BookOpen, ArrowRight } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const CourseCard:React.FC<{course:ICourse}> = ({ course }) => {
+  // console.log(course);
   return (
     <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-fit">
       <Link href={`/courses/${course?._id}`}>

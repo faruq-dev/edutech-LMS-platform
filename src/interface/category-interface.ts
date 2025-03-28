@@ -4,6 +4,7 @@ export interface ICategory {
     title: string;
     description: string;
     thumbnail: string;
+    _id?: string
     // _id?: Types.ObjectId; // This is an ObjectId (ক্যাটাগরির objectID)
 };
 
