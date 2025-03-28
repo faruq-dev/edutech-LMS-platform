@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Rubik, Manrope } from "next/font/google";
 import "./globals.css";
 import { dbConnect } from "@/service/db";
+import Navbar from "@/components/Navbar";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -31,6 +32,7 @@ export default async function RootLayout({
       <body
         className={`${rubik.variable} ${manrope.variable} antialiased`}
       >
+        <Navbar/>
         <div>{children}</div>
       </body>
     </html>

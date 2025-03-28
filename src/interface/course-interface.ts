@@ -12,7 +12,7 @@ export interface ICourse {
     price: number;
     active: boolean;
     category: Types.ObjectId; // This is an ObjectId (কোর্সের ক্যাটাগরির objectID)
-    // _id?: Types.ObjectId; // This is an ObjectId (কোর্সের objectID)
+    _id?: Types.ObjectId; // This is an ObjectId (কোর্সের objectID)
 }
 
 export type CourseModel = Model<ICourse, Record<string, unknown>>;

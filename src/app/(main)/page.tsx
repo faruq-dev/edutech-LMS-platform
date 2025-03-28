@@ -2,10 +2,15 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
+import SectionTitle from "@/components/SectionTitle";
+import { getCourse } from "@/controller/course-controller";
+import CourseCard from "./courses/_components/CourseCard";
 
-const Homepage = () => {
+const Homepage = async () => {
+  const courses = await  getCourse(); // Data fetched from mongoDB
+  // console.log(courses);
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto font-rubik">
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 grainy">
         <div className="container mx-auto flex max-w-[64rem] flex-col items-center gap-4 text-center relative isolate">
           <div
@@ -22,7 +27,7 @@ const Homepage = () => {
           </div>
 
           {/* Banner text and buttons */}
-          <span className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium border shadow-lg mb-2">
+          <span className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium border shadow-lg mb-2 animate-bounce">
             Hey, Welcome to Tutor LMS!
           </span>
           <h1 className="font-heading text-3xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
@@ -52,13 +57,15 @@ const Homepage = () => {
           </div>
         </div>
       </section>
+
+
       {/* Categories Section */}
       <section
         id="categories"
         className="container space-y-6  py-8  md:py-12 lg:py-24"
       >
         <div className="flex items-center justify-between">
-          <div>Categories</div>
+          <SectionTitle>Categories</SectionTitle>
 
           <Link
             href={""}
@@ -93,7 +100,7 @@ const Homepage = () => {
       {/* Courses */}
       <section id="features" className="container space-y-6 md:py-12 lg:py-24">
         <div className="flex items-center justify-between">
-          <div>Featured Courses</div>
+          <SectionTitle>Courses</SectionTitle>
           <Link
             href={"/courses"}
             className=" text-sm font-medium  hover:opacity-80 flex items-center gap-1"
@@ -102,9 +109,9 @@ const Homepage = () => {
           </Link>
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
-          {/* {courses.slice(1).map((course) => {
-            return <CourseCard key={course._id} course={course} />;
-          })} */}
+          {courses.map((course) => {
+            return <CourseCard key={course?._id?.toString()} course={course} />;
+          })}
         </div>
       </section>
     </div>
