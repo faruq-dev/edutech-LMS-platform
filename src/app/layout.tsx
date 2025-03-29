@@ -26,13 +26,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   await dbConnect();
-  
+
   return (
     <html lang="en">
       <body
-        className={`${rubik.variable} ${manrope.variable} antialiased`}
+        className={`${rubik.variable} ${manrope.variable} antialiased relative`}
       >
-        <Navbar/>
+        <div className="fixed top-0 left-0 right-0 z-50">
+          <Navbar />
+        </div>
         <div>{children}</div>
       </body>
     </html>

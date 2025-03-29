@@ -7,6 +7,7 @@ import { getCourse } from "@/controller/course-controller";
 import CourseCard from "./courses/_components/CourseCard";
 import { getCategory } from "@/controller/category-controller";
 import CategoryCard from "./categories/_components/CategoryCard";
+import HeroSectionBG from "@/components/HeroSectionBG";
 
 const Homepage = async () => {
   const courses = await  getCourse(); // Data fetched from mongoDB
@@ -14,7 +15,8 @@ const Homepage = async () => {
   console.log(categories);
   return (
     <div className="container mx-auto font-rubik">
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 grainy">
+      {/* This is the Old hero section currently hidden, using <HeroSectionBG/> component instead */}
+      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 grainy hidden">
         <div className="container mx-auto flex max-w-[64rem] flex-col items-center gap-4 text-center relative isolate">
           <div
             aria-hidden="true"
@@ -60,7 +62,7 @@ const Homepage = async () => {
           </div>
         </div>
       </section>
-
+      <HeroSectionBG/>
 
       {/* Categories Section */}
       <section
