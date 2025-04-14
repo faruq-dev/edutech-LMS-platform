@@ -12,7 +12,7 @@ import HeroSectionBG from "@/components/HeroSectionBG";
 const Homepage = async () => {
   const courses = await  getCourse(); // Data fetched from mongoDB
   const categories = await getCategory(); // Data fetched from mongoDB
-  console.log(categories);
+  // console.log(categories);
   return (
     <div className="container mx-auto font-rubik">
       {/* This is the Old hero section currently hidden, using <HeroSectionBG/> component instead */}

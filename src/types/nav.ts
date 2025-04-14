@@ -1,5 +1,5 @@
 export interface INavItem {
-  title: string;
-  href: string;
-  disabled?: boolean;
+    title: string;
+    href: string;
+    disabled?: boolean;
 }
